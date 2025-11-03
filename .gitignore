@@ -38,3 +38,6 @@ out/
 
 ### Kotlin ###
 .kotlin
+
+# environment files
+/src/main/resources/secret-local.yml
