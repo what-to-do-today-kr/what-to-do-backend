@@ -22,7 +22,7 @@ repositories {
 }
 
 ext {
-    set("springAiVersion", "1.0.3")
+    set("springAiVersion", "1.1.0-M4")
 }
 
 dependencyManagement {
@@ -38,7 +38,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
     // Spring AI
-    implementation("org.springframework.ai:spring-ai-starter-model-vertex-ai-gemini")
+    implementation("org.springframework.ai:spring-ai-starter-model-google-genai")
     implementation("org.springframework.ai:spring-ai-starter-model-openai")
 
     // Database
