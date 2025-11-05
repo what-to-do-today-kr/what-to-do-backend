@@ -54,6 +54,6 @@ class RecommendClient(private val chatModel: GoogleGenAiChatModel) {
         """
 
         private val RESPONSE_JSON_FORMAT: String = BeanOutputConverter(RecommendResponse::class.java).jsonSchema
-        private val RESPONSE_IGNORE_REGEX = Regex("```[a-zA-Z]*\\s*|```")
+        private val RESPONSE_IGNORE_REGEX = Regex("```\\s*[a-zA-Z]*\\s*|```")
     }
 }
