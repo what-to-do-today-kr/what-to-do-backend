@@ -1,6 +1,7 @@
 package keo.whattodo.client.recommend
 
 import com.fasterxml.jackson.core.JsonProcessingException
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.ai.converter.BeanOutputConverter
 import org.springframework.beans.factory.annotation.Value
@@ -30,7 +31,7 @@ class RecommendClient(
 
     private fun parseResponse(response: String): RecommendResponse {
         try {
-            return jacksonObjectMapper().readValue(response, RecommendResponse::class.java)
+            return OBJECT_MAPPER.readValue(response, RecommendResponse::class.java)
         } catch (e: JsonProcessingException) {
             throw IllegalArgumentException("Failed to parse response: $response", e)
         }
@@ -39,5 +40,6 @@ class RecommendClient(
     companion object {
         private val RESPONSE_JSON_FORMAT: String = BeanOutputConverter(RecommendResponse::class.java).jsonSchema
         private val RESPONSE_IGNORE_REGEX: Regex = Regex("```\\s*[a-zA-Z]*\\s*|```")
+        private val OBJECT_MAPPER: ObjectMapper = jacksonObjectMapper()
     }
 }
