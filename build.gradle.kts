@@ -22,7 +22,7 @@ repositories {
 }
 
 ext {
-    set("springAiVersion", "1.0.3")
+    set("springAiVersion", "1.1.0-M4") // Gen AI 지원이 포함된 Spring AI 최신 마일스톤 버전
 }
 
 dependencyManagement {
@@ -38,12 +38,15 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
     // Spring AI
-    implementation("org.springframework.ai:spring-ai-starter-model-vertex-ai-gemini")
+    implementation("org.springframework.ai:spring-ai-starter-model-google-genai")
     implementation("org.springframework.ai:spring-ai-starter-model-openai")
 
     // Database
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     runtimeOnly("com.h2database:h2")
+
+    // Kotlin Logging
+    implementation("io.github.microutils:kotlin-logging-jvm:3.0.5")
 
     // Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")

@@ -1,3 +1,19 @@
 spring:
   config:
     import: secret-local.yml
+
+  ai:
+    model:
+      chat: google-genai
+
+    google:
+      genai:
+        api-key: ${secret.ai.google.api-key}
+        project-id: ${secret.ai.google.project-id}
+        location: asia-northeast3
+        chat:
+          options:
+            model: gemini-2.5-flash-lite
+
+    openai:
+      api-key: ${secret.ai.openai.api-key}
