@@ -1,3 +1,6 @@
 spring:
   profiles:
-    default : local
+    default: local
+
+  config:
+    import: application-prompt.yml

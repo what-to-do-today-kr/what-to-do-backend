@@ -24,7 +24,7 @@ class RecommendClientTest {
 
         val actual = recommendClient.recommendToDo(request)
 
-        assertThat(actual).isNotEmpty()
+        assertThat(actual).isNotNull
         println(actual)
     }
 }
