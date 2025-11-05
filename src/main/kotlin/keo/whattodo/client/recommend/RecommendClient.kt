@@ -7,18 +7,16 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 
 @Component
-class RecommendClient(private val client: AiClient) {
-
-    @Value("\${app.prompt.recommend.system}")
-    private lateinit var systemPrompt: String
-
-    @Value("\${app.prompt.recommend.user}")
-    private lateinit var userPrompt: String
+class RecommendClient(
+    private val client: AiClient,
+    @Value("\${app.prompt.recommend.system}") private val systemPromptTemplate: String,
+    @Value("\${app.prompt.recommend.user}") private val userPromptTemplate: String,
+) {
 
     fun recommendToDo(request: RecommendRequest): RecommendResponse {
-        val systemPrompt = systemPrompt
+        val systemPrompt = systemPromptTemplate
             .replace("{jsonFormat}", RESPONSE_JSON_FORMAT)
-        val userPrompt = userPrompt
+        val userPrompt = userPromptTemplate
             .replace("{energy}", request.energy.toString())
             .replace("{weather}", request.weatherScript)
             .replace("{feeling}", request.feelingScript)
