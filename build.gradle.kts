@@ -22,7 +22,7 @@ repositories {
 }
 
 ext {
-    set("springAiVersion", "1.1.0-M4")
+    set("springAiVersion", "1.1.0-M4") // Gen AI 지원이 포함된 Spring AI 최신 마일스톤 버전
 }
 
 dependencyManagement {
