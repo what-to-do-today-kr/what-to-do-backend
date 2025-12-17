@@ -1,4 +1,4 @@
-package keo.whattodo.config
+package keo.whattodo.controller
 
 import dev.kord.core.Kord
 import dev.kord.core.event.gateway.ReadyEvent
