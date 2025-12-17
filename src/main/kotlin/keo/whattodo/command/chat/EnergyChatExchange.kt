@@ -3,19 +3,19 @@ package keo.whattodo.command.chat
 import keo.whattodo.command.ChatExchange
 import keo.whattodo.command.ChatOrder
 import keo.whattodo.command.Choice
-import keo.whattodo.command.MessageSender
 import org.springframework.stereotype.Component
 
 @Component
 class EnergyChatExchange() : ChatExchange {
     override val order: ChatOrder = ChatOrder.FIRST;
-
-    override fun doBeforeInput(sender: MessageSender) {
-        sender.send(REQUEST, CHOICES)
+    override fun doBeforeInput(): ChatResponse {
+        return ChatResponse(REQUEST, CHOICES)
     }
 
-    override fun doAfterInput(sender: MessageSender, message: String) {
+    override fun doAfterInput(message: String): ChatResponse {
+        return ChatResponse()
     }
+
 
     companion object {
         private val REQUEST = """
@@ -26,7 +26,7 @@ class EnergyChatExchange() : ChatExchange {
             지금 활동에 투자할 수 있는 신체적/정신적 에너지는 어느 정도인가요?
         """.trimIndent()
 
-        private val CHOICES : List<Choice>  = listOf(
+        private val CHOICES: List<Choice> = listOf(
             Choice("1점 - 매우 지침", "1"),
             Choice("2점 - 조금 지침", "2"),
             Choice("3점 - 보통", "3"),

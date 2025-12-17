@@ -3,20 +3,20 @@ package keo.whattodo.command.chat
 import keo.whattodo.command.ChatExchange
 import keo.whattodo.command.ChatOrder
 import keo.whattodo.command.Choice
-import keo.whattodo.command.MessageSender
 import org.springframework.stereotype.Component
 
 @Component
 class FeelChatExchange : ChatExchange {
 
     override val order: ChatOrder = ChatOrder.THIRD
-
-    override fun doBeforeInput(sender: MessageSender) {
-        sender.send(QUESTION, CHOICES)
+    override fun doBeforeInput(): ChatResponse {
+        return ChatResponse(QUESTION, CHOICES)
     }
 
-    override fun doAfterInput(sender: MessageSender, message: String) {
+    override fun doAfterInput(message: String): ChatResponse {
+        return ChatResponse()
     }
+
 
     companion object {
         private val QUESTION = """

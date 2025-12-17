@@ -2,16 +2,17 @@ package keo.whattodo.command.chat
 
 import keo.whattodo.command.ChatExchange
 import keo.whattodo.command.ChatOrder
-import keo.whattodo.command.MessageSender
+import org.springframework.stereotype.Component
 
+@Component
 class ResultChatExchange : ChatExchange {
 
     override val order: ChatOrder = ChatOrder.RESULT
-
-    override fun doBeforeInput(sender: MessageSender) {
-        sender.send("모든 질문이 완료되었습니다! 결과를 확인해보세요.")
+    override fun doBeforeInput(): ChatResponse {
+        return ChatResponse("결과는 추후 구현 예정입니다.", emptyList())
     }
 
-    override fun doAfterInput(sender: MessageSender, message: String) {
+    override fun doAfterInput(message: String): ChatResponse {
+        return ChatResponse()
     }
 }

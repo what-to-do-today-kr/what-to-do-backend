@@ -1,8 +1,10 @@
 package keo.whattodo.command
 
+import keo.whattodo.command.chat.ChatResponse
+
 interface ChatExchange {
     val order: ChatOrder
 
-    fun doBeforeInput(sender: MessageSender)
-    fun doAfterInput(sender: MessageSender, message: String)
+    fun doBeforeInput() : ChatResponse
+    fun doAfterInput(message: String) : ChatResponse
 }
