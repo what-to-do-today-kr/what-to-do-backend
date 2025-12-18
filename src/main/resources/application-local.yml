@@ -17,3 +17,7 @@ spring:
 
     openai:
       api-key: ${secret.ai.openai.api-key}
+
+discord:
+  bot:
+    token: ${secret.discord.token}

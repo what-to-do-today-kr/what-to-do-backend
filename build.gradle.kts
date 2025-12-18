@@ -32,10 +32,13 @@ dependencyManagement {
 }
 
 dependencies {
-    // Spring Web
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    // Spring Core
+    implementation("org.springframework.boot:spring-boot-starter")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+    // Discord Kord
+    implementation("dev.kord:kord-core:0.15.0")
 
     // Spring AI
     implementation("org.springframework.ai:spring-ai-starter-model-google-genai")
@@ -44,9 +47,6 @@ dependencies {
     // Database
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     runtimeOnly("com.h2database:h2")
-
-    // Kotlin Logging
-    implementation("io.github.microutils:kotlin-logging-jvm:3.0.5")
 
     // Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")

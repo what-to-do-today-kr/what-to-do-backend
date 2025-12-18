@@ -4,3 +4,6 @@ spring:
 
   config:
     import: application-prompt.yml
+
+  main:
+    web-application-type: none
