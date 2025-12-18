@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class EnergyChatExchange() : ChatExchange {
-    override val order: ChatOrder = ChatOrder.FIRST;
+    override val order: ChatOrder = ChatOrder.FIRST
     override fun doBeforeInput(): ChatResponse {
         return ChatResponse(REQUEST, CHOICES)
     }

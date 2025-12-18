@@ -22,9 +22,13 @@ import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import kotlinx.datetime.*
+import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.format
 import kotlinx.datetime.format.FormatStringsInDatetimeFormats
 import kotlinx.datetime.format.byUnicodePattern
+import kotlinx.datetime.toLocalDateTime
 import org.springframework.stereotype.Component
 
 @Component
@@ -86,7 +90,8 @@ class DiscordBotController(
         kord.events
             .filterIsInstance<ButtonInteractionCreateEvent>()
             .filter { event ->
-                if (event.interaction.message.author?.isBot == false) return@filter false
+                val author = event.interaction.message.author ?: return@filter false
+                if (!author.isBot) return@filter false
                 if (event.interaction.getChannel() !is ThreadChannel) return@filter false
                 if (event.interaction.componentId.split("_").size != 2) return@filter false
 

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration
 class ChatExchangeConfig {
 
     @Bean
-    fun chatExchagesMap(chatExchanges: List<ChatExchange>): Map<ChatOrder, ChatExchange> {
+    fun chatExchangesMap(chatExchanges: List<ChatExchange>): Map<ChatOrder, ChatExchange> {
         return chatExchanges.associateBy { it.order }
     }
 }
