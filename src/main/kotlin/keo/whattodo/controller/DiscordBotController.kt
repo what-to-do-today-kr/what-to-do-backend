@@ -68,7 +68,7 @@ class DiscordBotController(
 
                 val userName: String = event.interaction.user.effectiveName
                 val date: String = Clock.System.now()
-                    .toLocalDateTime(TimeZone.currentSystemDefault())
+                    .toLocalDateTime(TimeZone.of("Asia/Seoul"))
                     .format(LocalDateTime.Format { byUnicodePattern("yyyy/MM/dd") })
                 val responseMessage = "${userName}의 $date 할 일 추천"
 
@@ -101,7 +101,7 @@ class DiscordBotController(
             .onEach { event ->
                 val channel = event.interaction.message.getChannel().asChannelOf<ThreadChannel>()
                 event.interaction.updatePublicMessage { components = mutableListOf() }
-                channel.createMessage {content = "**${event.interaction.component.label}**을 선택하였습니다."}
+                channel.createMessage { content = "**${event.interaction.component.label}**을 선택하였습니다." }
 
                 val componentId = event.interaction.componentId.split("_")
                 val order = ChatOrder.fromString(componentId[0])
