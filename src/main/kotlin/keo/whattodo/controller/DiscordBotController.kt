@@ -14,7 +14,7 @@ import dev.kord.core.event.interaction.ButtonInteractionCreateEvent
 import dev.kord.core.event.interaction.GuildChatInputCommandInteractionCreateEvent
 import dev.kord.rest.builder.message.actionRow
 import jakarta.annotation.PostConstruct
-import keo.whattodo.command.ChatExchange
+import keo.whattodo.command.ChatContext
 import keo.whattodo.command.ChatOrder
 import keo.whattodo.command.chat.ChatResponse
 import kotlinx.coroutines.flow.filter
@@ -34,9 +34,8 @@ import org.springframework.stereotype.Component
 @Component
 class DiscordBotController(
     private val kord: Kord,
-    private val commands: Map<ChatOrder, ChatExchange>,
+    private val chatContext: ChatContext,
 ) {
-
     private val testGuildId = Snowflake(401976520425472020)
     private val chatInputCommand = "오늘-뭐-하지"
 
@@ -80,8 +79,8 @@ class DiscordBotController(
                     name = responseMessage,
                 )
 
-                val command = commands[ChatOrder.getStart()] ?: throw IllegalArgumentException("명령어가 없습니다.")
-                sendMessage(threadChannel, ChatOrder.getStart(), command.doBeforeInput())
+                val command = chatContext.getFirstChat()
+                sendMessage(threadChannel, ChatOrder.getStart(), command.askQuestion())
             }
             .launchIn(kord)
     }
@@ -101,17 +100,16 @@ class DiscordBotController(
             .onEach { event ->
                 val channel = event.interaction.message.getChannel().asChannelOf<ThreadChannel>()
                 event.interaction.updatePublicMessage { components = mutableListOf() }
-                channel.createMessage { content = "**${event.interaction.component.label}**을 선택하였습니다." }
 
                 val componentId = event.interaction.componentId.split("_")
                 val order = ChatOrder.fromString(componentId[0])
                 val userInput = componentId[1]
 
-                val command = commands[order] ?: throw IllegalArgumentException("명령어가 없습니다.")
-                sendMessage(channel, order, command.doAfterInput(userInput))
+                val command = chatContext.getCurrentChat(order)
+                sendMessage(channel, order, command.answer(userInput))
 
-                val nextCommand = commands[order.next] ?: throw IllegalArgumentException("명령어가 없습니다.")
-                sendMessage(channel, order.next, nextCommand.doBeforeInput())
+                val nextCommand = chatContext.getNextChat(command)
+                sendMessage(channel, order.next, nextCommand.askQuestion())
             }
             .launchIn(kord)
     }

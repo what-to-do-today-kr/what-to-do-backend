@@ -4,6 +4,7 @@ enum class ChatOrder {
     FIRST,
     SECOND,
     THIRD,
+    FOURTH,
     RESULT,
     ;
 
@@ -11,7 +12,8 @@ enum class ChatOrder {
         get() = when (this) {
             FIRST -> SECOND
             SECOND -> THIRD
-            THIRD -> RESULT
+            THIRD -> FOURTH
+            FOURTH -> RESULT
             RESULT -> RESULT
         }
 
@@ -24,3 +26,4 @@ enum class ChatOrder {
         }
     }
 }
+

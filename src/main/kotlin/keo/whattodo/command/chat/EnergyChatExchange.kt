@@ -8,12 +8,13 @@ import org.springframework.stereotype.Component
 @Component
 class EnergyChatExchange : ChatExchange {
     override val order: ChatOrder = ChatOrder.FIRST
-    override fun doBeforeInput(): ChatResponse {
+
+    override fun askQuestion(): ChatResponse {
         return ChatResponse(REQUEST, CHOICES)
     }
 
-    override fun doAfterInput(message: String): ChatResponse {
-        return ChatResponse()
+    override fun answer(message: String): ChatResponse {
+        return ChatResponse("${message}점 이시군요, 다음 질문으로 넘어가 볼게요!")
     }
 
 
@@ -22,7 +23,7 @@ class EnergyChatExchange : ChatExchange {
             안녕하세요! 저는 당신의 여가 시간을 도와드릴 심리 기반 활동 큐레이터예요 🌟
             오늘 자유 시간에 뭘 해야 할지 고민되시나요?
             딱 5가지 질문에만 답해주시면, 꼭 맞는 활동을 추천해드릴게요!
-            첫 번째 질문이에요 💪
+            ### 💪 첫 번째 질문
             지금 활동에 투자할 수 있는 신체적/정신적 에너지는 어느 정도인가요?
         """.trimIndent()
 
