@@ -81,7 +81,7 @@ class DiscordBotController(
                 )
 
                 val command = commands[ChatOrder.getStart()] ?: throw IllegalArgumentException("명령어가 없습니다.")
-                sendMessage(threadChannel, ChatOrder.getStart(), command.doBeforeInput())
+                sendMessage(threadChannel, ChatOrder.getStart(), command.askQuestion())
             }
             .launchIn(kord)
     }
@@ -108,10 +108,10 @@ class DiscordBotController(
                 val userInput = componentId[1]
 
                 val command = commands[order] ?: throw IllegalArgumentException("명령어가 없습니다.")
-                sendMessage(channel, order, command.doAfterInput(userInput))
+                sendMessage(channel, order, command.answer(userInput))
 
                 val nextCommand = commands[order.next] ?: throw IllegalArgumentException("명령어가 없습니다.")
-                sendMessage(channel, order.next, nextCommand.doBeforeInput())
+                sendMessage(channel, order.next, nextCommand.askQuestion())
             }
             .launchIn(kord)
     }
