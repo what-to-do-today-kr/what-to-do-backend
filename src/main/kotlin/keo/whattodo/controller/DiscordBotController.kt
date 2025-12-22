@@ -100,7 +100,6 @@ class DiscordBotController(
             .onEach { event ->
                 val channel = event.interaction.message.getChannel().asChannelOf<ThreadChannel>()
                 event.interaction.updatePublicMessage { components = mutableListOf() }
-                channel.createMessage { content = "**${event.interaction.component.label}**을 선택하였습니다." }
 
                 val componentId = event.interaction.componentId.split("_")
                 val order = ChatOrder.fromString(componentId[0])

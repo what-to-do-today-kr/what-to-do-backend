@@ -19,7 +19,7 @@ class TimeChatExchange : ChatExchange {
 
     companion object {
         private val QUESTION = """
-            ## ⏰ 두 번째 질문
+            ### ⏰ 두 번째 질문
             활동에 투자할 수 있는 시간을 선택해주세요.
         """.trimIndent()
 

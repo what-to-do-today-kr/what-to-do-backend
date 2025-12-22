@@ -14,13 +14,13 @@ class FeelChatExchange : ChatExchange {
     }
 
     override fun answer(message: String): ChatResponse {
-        return ChatResponse("${message} 이시군요, 다음 질문으로 넘어가 볼게요!")
+        return ChatResponse("${message} 기분이시군요, 이제 결과를 보여드릴께요 잠시만 기다려주세요~")
     }
 
 
     companion object {
         private val QUESTION = """
-            ## 😊 마지막 질문 
+            ### 😊 마지막 질문
             오늘 기분이 어떠신가요?
         """.trimIndent()
 

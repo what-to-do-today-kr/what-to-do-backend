@@ -19,7 +19,7 @@ class EnvironmentChatExchange : ChatExchange {
 
     companion object {
         private val QUESTION = """
-            ## 🌳 세 번째 질문 
+            ### 🌳 세 번째 질문
             어떤 환경에서 활동하고 싶으신가요?
         """.trimIndent()
 
