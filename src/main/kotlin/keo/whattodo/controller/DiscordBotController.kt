@@ -16,7 +16,7 @@ import dev.kord.rest.builder.message.actionRow
 import jakarta.annotation.PostConstruct
 import keo.whattodo.command.ChatContext
 import keo.whattodo.command.ChatOrder
-import keo.whattodo.command.chat.ChatResponse
+import keo.whattodo.command.ChatResponse
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.launchIn

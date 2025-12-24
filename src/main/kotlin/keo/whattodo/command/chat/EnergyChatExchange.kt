@@ -2,6 +2,7 @@ package keo.whattodo.command.chat
 
 import keo.whattodo.command.ChatExchange
 import keo.whattodo.command.ChatOrder
+import keo.whattodo.command.ChatResponse
 import keo.whattodo.command.Choice
 import org.springframework.stereotype.Component
 
