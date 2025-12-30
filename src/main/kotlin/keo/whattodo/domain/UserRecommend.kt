@@ -1,8 +1,10 @@
 package keo.whattodo.domain
 
 import jakarta.persistence.*
+import org.hibernate.annotations.DynamicUpdate
 
 @Entity
+@DynamicUpdate
 class UserRecommend(
     @ManyToOne
     @JoinColumn(name = "user_state_id", nullable = false)
