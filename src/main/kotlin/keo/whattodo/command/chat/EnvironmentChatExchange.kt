@@ -2,18 +2,21 @@ package keo.whattodo.command.chat
 
 import keo.whattodo.command.ChatExchange
 import keo.whattodo.command.ChatOrder
+import keo.whattodo.command.ChatResponse
 import keo.whattodo.command.Choice
+import keo.whattodo.service.UserStateService
 import org.springframework.stereotype.Component
 
 @Component
-class EnvironmentChatExchange : ChatExchange {
+class EnvironmentChatExchange(private val userStateService: UserStateService) : ChatExchange {
     override val order: ChatOrder = ChatOrder.THIRD
 
     override fun askQuestion(): ChatResponse {
         return ChatResponse(QUESTION, CHOICES)
     }
 
-    override fun answer(message: String): ChatResponse {
+    override fun answer(message: String, chatId: Long): ChatResponse {
+        userStateService.update(chatId) { this.environment = message }
         return ChatResponse("${message}에서 활동하고 싶으시군요, 다음 질문으로 넘어가 볼게요!")
     }
 

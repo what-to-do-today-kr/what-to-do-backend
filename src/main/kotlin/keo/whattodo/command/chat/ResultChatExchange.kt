@@ -2,6 +2,7 @@ package keo.whattodo.command.chat
 
 import keo.whattodo.command.ChatExchange
 import keo.whattodo.command.ChatOrder
+import keo.whattodo.command.ChatResponse
 import org.springframework.stereotype.Component
 
 @Component
@@ -12,7 +13,7 @@ class ResultChatExchange : ChatExchange {
         return ChatResponse("결과는 추후 구현 예정입니다.", emptyList())
     }
 
-    override fun answer(message: String): ChatResponse {
+    override fun answer(message: String, chatId: Long): ChatResponse {
         return ChatResponse()
     }
 }

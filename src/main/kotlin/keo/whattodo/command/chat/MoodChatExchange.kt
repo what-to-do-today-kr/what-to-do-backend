@@ -2,19 +2,22 @@ package keo.whattodo.command.chat
 
 import keo.whattodo.command.ChatExchange
 import keo.whattodo.command.ChatOrder
+import keo.whattodo.command.ChatResponse
 import keo.whattodo.command.Choice
+import keo.whattodo.service.UserStateService
 import org.springframework.stereotype.Component
 
 @Component
-class FeelChatExchange : ChatExchange {
+class MoodChatExchange(private val userStateService: UserStateService) : ChatExchange {
     override val order: ChatOrder = ChatOrder.FOURTH
 
     override fun askQuestion(): ChatResponse {
         return ChatResponse(QUESTION, CHOICES)
     }
 
-    override fun answer(message: String): ChatResponse {
-        return ChatResponse("${message} 기분이시군요, 이제 결과를 보여드릴께요 잠시만 기다려주세요~")
+    override fun answer(message: String, chatId: Long): ChatResponse {
+        userStateService.update(chatId) { this.mood = message }
+        return ChatResponse("$message 기분이시군요, 이제 결과를 보여드릴게요 잠시만 기다려주세요~")
     }
 
 
