@@ -18,10 +18,10 @@ class RecommendClient(
         val systemPrompt = systemPromptTemplate
             .replace("{jsonFormat}", RESPONSE_JSON_FORMAT)
         val userPrompt = userPromptTemplate
-            .replace("{energy}", request.energy.toString())
-            .replace("{weather}", request.weatherScript)
-            .replace("{feeling}", request.feelingScript)
-            .replace("{goal}", request.goalScript)
+            .replace("{energy}", request.energy)
+            .replace("{time}", request.time)
+            .replace("{feeling}", request.mood)
+            .replace("{environment}", request.environment)
 
         val response = client.call(systemPrompt, userPrompt)
             .replace(RESPONSE_IGNORE_REGEX, "")

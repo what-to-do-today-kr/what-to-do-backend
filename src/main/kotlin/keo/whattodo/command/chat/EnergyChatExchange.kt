@@ -8,13 +8,10 @@ import keo.whattodo.service.UserStateService
 import org.springframework.stereotype.Component
 
 @Component
-class EnergyChatExchange(
-    private val userStateService: UserStateService
-) : ChatExchange {
-
+class EnergyChatExchange(private val userStateService: UserStateService) : ChatExchange {
     override val order: ChatOrder = ChatOrder.FIRST
 
-    override fun askQuestion(): ChatResponse {
+    override fun askQuestion(chatId: Long): ChatResponse {
         return ChatResponse(REQUEST, CHOICES)
     }
 
