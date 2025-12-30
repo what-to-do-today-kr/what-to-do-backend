@@ -1,15 +1,15 @@
 package keo.whattodo.service
 
-import jakarta.transaction.Transactional
 import keo.whattodo.domain.UserState
 import keo.whattodo.repository.UserStateRepository
 import keo.whattodo.repository.findByIdOrElseThrow
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class UserStateService(private val userStateRepository: UserStateRepository) {
 
-    fun create(platform: String, userId: String, roomId: String) : UserState {
+    fun create(platform: String, userId: String, roomId: String): UserState {
         val userState = UserState(platform, userId, roomId)
         return userStateRepository.save(userState)
     }

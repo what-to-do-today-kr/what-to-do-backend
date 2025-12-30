@@ -2,6 +2,7 @@ package keo.whattodo.domain
 
 import jakarta.persistence.*
 
+@Entity
 class UserRecommend(
     @ManyToOne
     @JoinColumn(name = "user_state_id", nullable = false)

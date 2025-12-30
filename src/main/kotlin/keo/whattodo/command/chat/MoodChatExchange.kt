@@ -8,7 +8,7 @@ import keo.whattodo.service.UserStateService
 import org.springframework.stereotype.Component
 
 @Component
-class FeelChatExchange(private val chatStateService: UserStateService) : ChatExchange {
+class MoodChatExchange(private val userStateService: UserStateService) : ChatExchange {
     override val order: ChatOrder = ChatOrder.FOURTH
 
     override fun askQuestion(): ChatResponse {
@@ -16,7 +16,7 @@ class FeelChatExchange(private val chatStateService: UserStateService) : ChatExc
     }
 
     override fun answer(message: String, chatId: Long): ChatResponse {
-        chatStateService.update(chatId) { this.mood = message }
+        userStateService.update(chatId) { this.mood = message }
         return ChatResponse("$message 기분이시군요, 이제 결과를 보여드릴께요 잠시만 기다려주세요~")
     }
 
