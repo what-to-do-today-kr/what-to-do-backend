@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service
 @Service
 class UserStateService(private val userStateRepository: UserStateRepository) {
 
-    fun create(userId: String, platform: String) {
-        val userState = UserState(userId, platform)
-        userStateRepository.save(userState)
+    fun create(platform: String, userId: String, roomId: String) : UserState {
+        val userState = UserState(platform, userId, roomId)
+        return userStateRepository.save(userState)
     }
 
     @Transactional
