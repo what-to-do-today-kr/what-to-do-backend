@@ -1,6 +1,5 @@
 package keo.whattodo.service
 
-import jakarta.transaction.Transactional
 import keo.whattodo.client.recommend.RecommendClient
 import keo.whattodo.client.recommend.RecommendRequest
 import keo.whattodo.domain.UserRecommend
@@ -8,6 +7,7 @@ import keo.whattodo.repository.UserRecommendRepository
 import keo.whattodo.repository.UserStateRepository
 import keo.whattodo.repository.findByIdOrElseThrow
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class UserRecommendService(

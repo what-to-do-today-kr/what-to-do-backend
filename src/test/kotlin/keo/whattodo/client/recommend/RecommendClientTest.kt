@@ -16,10 +16,10 @@ class RecommendClientTest {
     @Disabled
     fun `실행 테스트`() {
         val request = RecommendRequest(
-            energy = 1,
-            mood = "귀찮음",
-            time = "매우 맑음",
-            goalScript = "머리를 비우는 충분한 휴식",
+            energy = "5",
+            mood = "신나는",
+            time = "30분",
+            environment = "실내",
         )
 
         val actual = recommendClient.recommendToDo(request)
