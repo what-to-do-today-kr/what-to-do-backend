@@ -15,7 +15,7 @@ class UserRecommend(
     @Column(nullable = false) val step2: String,
     @Column(nullable = false) val step3: String,
     @Column(nullable = false) val tip: String,
-    @Column(nullable = false) val isChoose: Boolean = false,
+    @Column(nullable = false) val chosen: Boolean = false,
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

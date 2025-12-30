@@ -17,7 +17,7 @@ class MoodChatExchange(private val userStateService: UserStateService) : ChatExc
 
     override fun answer(message: String, chatId: Long): ChatResponse {
         userStateService.update(chatId) { this.mood = message }
-        return ChatResponse("$message 기분이시군요, 이제 결과를 보여드릴께요 잠시만 기다려주세요~")
+        return ChatResponse("$message 기분이시군요, 이제 결과를 보여드릴게요 잠시만 기다려주세요~")
     }
 
 
