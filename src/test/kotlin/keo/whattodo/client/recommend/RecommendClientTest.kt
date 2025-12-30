@@ -17,8 +17,8 @@ class RecommendClientTest {
     fun `실행 테스트`() {
         val request = RecommendRequest(
             energy = 1,
-            feelingScript = "귀찮음",
-            weatherScript = "매우 맑음",
+            mood = "귀찮음",
+            time = "매우 맑음",
             goalScript = "머리를 비우는 충분한 휴식",
         )
 

@@ -6,6 +6,7 @@ enum class ChatOrder {
     THIRD,
     FOURTH,
     RESULT,
+    FINISH,
     ;
 
     val next: ChatOrder
@@ -14,7 +15,8 @@ enum class ChatOrder {
             SECOND -> THIRD
             THIRD -> FOURTH
             FOURTH -> RESULT
-            RESULT -> RESULT
+            RESULT -> FINISH
+            FINISH -> FINISH
         }
 
     companion object {

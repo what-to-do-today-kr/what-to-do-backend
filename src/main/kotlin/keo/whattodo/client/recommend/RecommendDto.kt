@@ -4,11 +4,18 @@ import keo.whattodo.domain.UserRecommend
 import keo.whattodo.domain.UserState
 
 data class RecommendRequest(
-    val energy: Int,
-    val feelingScript: String,
-    val weatherScript: String,
-    val goalScript: String,
-)
+    val energy: String,
+    val mood: String,
+    val time: String,
+    val environment: String,
+) {
+    constructor(userState: UserState) : this(
+        energy = userState.energy,
+        mood = userState.mood,
+        time = userState.time,
+        environment = userState.environment,
+    )
+}
 
 data class RecommendResponse(
     val recommendations: List<RecommendDetailResponse>
@@ -35,7 +42,7 @@ data class RecommendDetailResponse(
         step1 = step1,
         step2 = step2,
         step3 = step3,
-        order = order,
+        sequence = order,
         tip = tip,
     )
 }

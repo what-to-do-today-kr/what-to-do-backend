@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component
 class TimeChatExchange(private val userStateService: UserStateService) : ChatExchange {
     override val order: ChatOrder = ChatOrder.SECOND
 
-    override fun askQuestion(): ChatResponse {
+    override fun askQuestion(chatId: Long): ChatResponse {
         return ChatResponse(QUESTION, CHOICES)
     }
 

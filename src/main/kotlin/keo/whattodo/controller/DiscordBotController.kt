@@ -82,7 +82,7 @@ class DiscordBotController(
                 val userId = event.interaction.user.id.toString()
                 val chatId = startChat.startChat(platform, userId, roomId)
 
-                val response = chatContext.getFirstChat().askQuestion()
+                val response = chatContext.getFirstChat().askQuestion(chatId)
                 sendMessage(threadChannel, ChatOrder.getStart(), response, chatId)
             }
             .launchIn(kord)
@@ -114,7 +114,7 @@ class DiscordBotController(
                 sendMessage(channel, order, answer, chatId)
 
                 val nextCommand = chatContext.getNextChat(command)
-                val question = nextCommand.askQuestion()
+                val question = nextCommand.askQuestion(chatId)
                 sendMessage(channel, order.next, question, chatId)
             }
             .launchIn(kord)

@@ -7,5 +7,4 @@ fun UserStateRepository.findByIdOrElseThrow(id: Long): UserState {
     return findById(id).orElseThrow { IllegalArgumentException("UserState not found for id: $id") }
 }
 
-interface UserStateRepository : JpaRepository<UserState, Long> {
-}
+interface UserStateRepository : JpaRepository<UserState, Long>

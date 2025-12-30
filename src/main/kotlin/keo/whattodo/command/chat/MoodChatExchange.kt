@@ -11,15 +11,14 @@ import org.springframework.stereotype.Component
 class MoodChatExchange(private val userStateService: UserStateService) : ChatExchange {
     override val order: ChatOrder = ChatOrder.FOURTH
 
-    override fun askQuestion(): ChatResponse {
+    override fun askQuestion(chatId: Long): ChatResponse {
         return ChatResponse(QUESTION, CHOICES)
     }
 
     override fun answer(message: String, chatId: Long): ChatResponse {
         userStateService.update(chatId) { this.mood = message }
-        return ChatResponse("$message 기분이시군요, 이제 결과를 보여드릴게요 잠시만 기다려주세요~")
+        return ChatResponse("$message 기분이시군요.\n$RESPONSE")
     }
-
 
     companion object {
         private val QUESTION = """
@@ -34,5 +33,10 @@ class MoodChatExchange(private val userStateService: UserStateService) : ChatExc
             Choice("행복함/기쁨"),
             Choice("피곤함/무기력"),
         )
+
+        private val RESPONSE = """
+            ### 🎉 모든 질문이 완료되었습니다!
+            이제 당신에게 딱 맞는 활동을 추천해드릴게요. 잠시만 기다려주세요~
+        """.trimIndent()
     }
 }
